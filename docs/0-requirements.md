@@ -12,7 +12,7 @@ Replace this text with a description of your typical end-users and their specifi
 
 ## Proposed Solution
 
-Replace this text with a brief statement about the system that you intend to create, including the key functionality it should have.
+I want to create a system that is easy and quick to use because WOW workers have to go through lots of different costumes everyday so a easy way to say if the costume is good for the show it will save lots of time. I will make it have options for what problems the specific costume has for a quick select and move on
 
 
 ---
