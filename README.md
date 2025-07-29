@@ -1,4 +1,4 @@
-# WOW costumes
+# WOW project
 
 by Ned Waite
 
@@ -13,7 +13,7 @@ be used and what are needed also to check if the costume needs anything before b
 - It will let the workers say if it needs repairs and what does need fixing
 - A check box for the costumes needs 
 - Adding/removing costumes
-- Feature 4 here
+- 
 - Feature 5 here
 
 

@@ -2,6 +2,7 @@
 
 ## Identified Problem or Need
 
+Need to fix a problem with the online form my Mum has to use for WOW so I am making my own version with what she needs it to have for it to be useful
 Replace this text with a clearly stated problem or need that exists that your project will attempt to solve / fulfil.
 
 
@@ -19,13 +20,13 @@ I want to create a system that is easy and quick to use because WOW workers have
 
 # Relevant Implications
 
-## NAME OF IMPLICATION 1
+## Usability Implications
 
-Replace this text with a clear explanation of what the implication means.
+This implication means it needs to be useable by the user without any problems that the user could get frustrated at e.g. no cancel/back button
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the implication is relevant to this particular project.
+I want it to be easy to navigate and use because of the other online sheet my mum has to use is hard and not too great for the user
 
 ### Impact / Considerations
 
@@ -33,13 +34,13 @@ Replace this text with an explanation of what you will need to consider moving f
 
 
 
-## NAME OF IMPLICATION 2
+## Aesthetic Implications
 
-Replace this text with a clear explanation of what the implication means.
+Aesthetic implication is to make the appearance of the website look fitting and comfortable on the users eyes otherwise they would probably click off due to it being very annoying
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the implication is relevant to this particular project.
+This implication is relevant to my website because I want it to look good and fit in with the theme of WOW but also make the colours work well together to show where the user can find what they need
 
 ### Impact / Considerations
 
