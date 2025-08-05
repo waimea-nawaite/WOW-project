@@ -7,12 +7,12 @@ by Ned Waite
 
 ## Project Description
 
-My project will be about costumes in WOW (world of wearable art) it will be used for who needs to see what costumes will
+My project will be about Garments in WOW (world of wearable art) it will be used for who needs to see what Garments will
 be used and what are needed also to check if the costume needs anything before being used
 
 - It will let the workers say if it needs repairs and what does need fixing
-- A check box for the costumes needs 
-- Adding/removing costumes
+- A check box for the Garments needs 
+- Adding/removing Garments
 - 
 - Feature 5 here
 

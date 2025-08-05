@@ -8,12 +8,13 @@ Replace this text with a clearly stated problem or need that exists that your pr
 
 ## End-User Requirements
 
+Easy navigation, a good layout to see what they need quick and easy, and they want it to work better than the old website they use now.
 Replace this text with a description of your typical end-users and their specific needs / expectations / requirements.
 
 
 ## Proposed Solution
 
-I want to create a system that is easy and quick to use because WOW workers have to go through lots of different costumes everyday so a easy way to say if the costume is good for the show it will save lots of time. I will make it have options for what problems the specific costume has for a quick select and move on
+I want to create a system that is easy and quick to use because WOW workers have to go through lots of different Garments everyday so a easy way to say if the costume is good for the show it will save lots of time. I will make it have options for what problems the specific costume has for a quick select and move on
 
 
 ---
@@ -44,11 +45,13 @@ This implication is relevant to my website because I want it to look good and fi
 
 ### Impact / Considerations
 
+I will make the website look great so people don't get annoyed at how it looks because that would be very annoying and it will also impact how the user feels about using the website
 Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
 
 
 
-## NAME OF IMPLICATION 3
+## End-User Implications
+
 
 Replace this text with a clear explanation of what the implication means.
 
