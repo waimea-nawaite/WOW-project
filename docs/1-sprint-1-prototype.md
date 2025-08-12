@@ -12,9 +12,9 @@ Develop a prototype that simulates the key functionality of the system, then tes
 
 ## Initial Database Design
 
-Replace this text with notes regarding the DB design.
+The design is gonna look something like below but I will be changing lots to fit what the user wants it to look and be like. 
 
-![SCREENSHOT OF DB DESIGN](screenshots/example.png)
+![SCREENSHOT OF DB DESIGN](screenshots/costume.png)
 
 
 ---
