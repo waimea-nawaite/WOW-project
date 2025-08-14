@@ -9,32 +9,32 @@
 
 {% block title %}
 
-    Flask Demo - Single Thing
+    Flask Demo - Single garment
 
 {% endblock %}
 
 
 {% block content %}
 
-    <h1>A Single Thing...</h1>
+    <h1>A Single garment...</h1>
 
 
     <article>
 
         <header>
-            <h3>{{ thing.name }}</h3>
+            <h3>{{ garment.name }}</h3>
         </header>
 
-        <p>Price: <strong>${{ thing.price }}</strong></p>
+        <p>Price: <strong>${{ garment.price }}</strong></p>
 
         <footer>
-            <a href="/delete/{{ thing.id }}" onclick="return confirm('Really delete?');">Delete</a>
+            <a href="/delete/{{ garment.id }}" onclick="return confirm('Really delete?');">Delete</a>
         </footer>
 
     </article>
 
 
-    <a role="button" href="/things">Back to Thing List</a>
+    <a role="button" href="/garments">Back to garment List</a>
 
 {% endblock %}
 

@@ -9,24 +9,24 @@
 
 {% block title %}
 
-    Flask Demo - All Things
+    Flask Demo - All garments
 
 {% endblock %}
 
 
 {% block content %}
 
-    <h1>Things...</h1>
+    <h1>garments...</h1>
 
 
     <article>
 
         <ul>
-            {% for thing in things %}
+            {% for garment in garments %}
 
                 <li>
-                    <a href="/thing/{{ thing.id }}">
-                        {{ thing.name }}
+                    <a href="/garment/{{ thing.id }}">
+                        {{ garment.name }}
                     </a>
                 </li>
 
@@ -42,14 +42,14 @@
 
     <article>
 
-        <h3>Add a New Thing...</h3>
+        <h3>Add a New Garment...</h3>
 
         <form action="/add" method="POST">
 
             <input
                 type="text"
                 name="name"
-                placeholder="Name of new thing"
+                placeholder="Name of new garment"
                 required
             >
 
@@ -61,7 +61,7 @@
                 required
             >
 
-            <button>Add the Thing</button>
+            <button>Add the Garment</button>
 
         </form>
 
