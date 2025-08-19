@@ -1,5 +1,6 @@
 {#=====================================================
-  Things list page
+  Home page
+  - Hero style greeting banner
   - List of things passed in as 'things' array
   - Form for adding a new thing
 =====================================================#}
@@ -9,26 +10,23 @@
 
 {% block title %}
 
-    Flask Demo - All garments
+    Flask Demo - All Garments
 
 {% endblock %}
 
 
 {% block content %}
 
-    <h1>garments...</h1>
+    <h1>Garments...</h1>
 
-
-    <article>
 
         <ul>
             {% for garment in garments %}
 
-                <li>
-                    <a href="/garment/{{ thing.id }}">
-                        {{ garment.name }}
-                    </a>
-                </li>
+                <article>
+                    {{ garment.priority }} {{ garment.name }}
+                    <a href="/delete/{{ garment.id }}">Remove</a>
+                </article>
 
             {% else %}
 
@@ -37,7 +35,6 @@
             {% endfor %}
         </ul>
 
-    </article>
 
 
     <article>
@@ -55,9 +52,10 @@
 
             <input
                 type="number"
-                name="price"
+                name="priority"
                 min="0"
-                placeholder="Price in dollars"
+                max="5"
+                placeholder="Priority of garment"
                 required
             >
 
@@ -68,4 +66,5 @@
     </article>
 
 {% endblock %}
+
 

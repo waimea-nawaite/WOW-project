@@ -25,7 +25,7 @@
             <h3>{{ garment.name }}</h3>
         </header>
 
-        <p>Price: <strong>${{ garment.price }}</strong></p>
+        <p>Priority: {{ garment.priority }}</p>
 
         <footer>
             <a href="/delete/{{ garment.id }}" onclick="return confirm('Really delete?');">Delete</a>
@@ -34,7 +34,7 @@
     </article>
 
 
-    <a role="button" href="/garments">Back to garment List</a>
+    <a role="button" href="/">Back to garment List</a>
 
 {% endblock %}
 
