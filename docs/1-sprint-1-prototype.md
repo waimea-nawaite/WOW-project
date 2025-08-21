@@ -29,7 +29,7 @@ This Figma demo shows the initial design for the UI 'flow':
 
 ### Testing
 
-Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
+My tester/end-user said that the 
 
 ### Changes / Improvements
 

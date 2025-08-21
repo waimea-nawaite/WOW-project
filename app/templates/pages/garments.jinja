@@ -17,23 +17,27 @@
 
 {% block content %}
 
-    <h1>Garments...</h1>
+    <section id="garment-list">
+
+        <h1>Garments...</h1>
 
 
-        <ul>
-            {% for garment in garments %}
+            <ul>
+                {% for garment in garments %}
 
-                <article>
-                    {{ garment.priority }} {{ garment.name }}
-                    <a href="/delete/{{ garment.id }}">Remove</a>
-                </article>
+                    <article>
+                        {{ garment.priority }} {{ garment.name }}
+                        <a href="/delete/{{ garment.id }}">Remove</a>
+                    </article>
 
-            {% else %}
+                {% else %}
 
-                <p>None!</p>
+                    <p>None!</p>
 
-            {% endfor %}
-        </ul>
+                {% endfor %}
+            </ul>
+
+    </section>
 
 
 

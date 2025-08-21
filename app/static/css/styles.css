@@ -28,6 +28,13 @@
     list-style: none;
     text-align: center;
     margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+/* GARMENT LIST -------------------------------------------- */
+
+#garment-list {
+    font-size: 1.2rem;
 }
 
 #messages .message.success { color: var(--pico-color-green-500); }
