@@ -32,7 +32,7 @@ init_datetime(app)  # Handle UTC dates in timestamps
 def show_all_garments():
     with connect_db() as client:
         # Get all the things from the DB
-        sql = "SELECT priority, name, id FROM garments ORDER BY priority ASC"
+        sql = "SELECT priority, name, id FROM garments ORDER BY priority DESC"
         params = []
         result = client.execute(sql, params)
         garments = result.rows
@@ -55,7 +55,7 @@ def about():
 def show_one_garment(id):
     with connect_db() as client:
         # Get the thing details from the DB
-        sql = "SELECT id, name, price FROM garments WHERE id=?"
+        sql = "SELECT priority, name, id FROM garments WHERE id=?"
         params = [id]
         result = client.execute(sql, params)
 

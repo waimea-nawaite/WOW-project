@@ -28,6 +28,7 @@
                     <article>
                         {{ garment.priority }} {{ garment.name }}
                         <a href="/delete/{{ garment.id }}">Remove</a>
+                        <a href="/garment/{{ garment.id }}">Select</a>
                     </article>
 
                 {% else %}
@@ -38,8 +39,6 @@
             </ul>
 
     </section>
-
-
 
     <article>
 
