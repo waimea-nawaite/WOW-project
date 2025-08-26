@@ -10,7 +10,7 @@
 
 {% block title %}
 
-    Flask Demo - All Garments
+    Garment List
 
 {% endblock %}
 
@@ -26,9 +26,9 @@
                 {% for garment in garments %}
 
                     <article>
-                        {{ garment.priority }} {{ garment.name }}
+                        {{ garment.priority }} <a href="/garment/{{ garment.id }}">{{ garment.name }}</a>
                         <a href="/delete/{{ garment.id }}">Remove</a>
-                        <a href="/garment/{{ garment.id }}">Select</a>
+                        {{ garment.date }}
                     </article>
 
                 {% else %}
@@ -58,11 +58,11 @@
                 name="priority"
                 min="0"
                 max="5"
-                placeholder="Priority of garment"
+                placeholder="Priority of new garment"
                 required
             >
 
-            <button>Add the Garment</button>
+            <button>Add Garment</button>
 
         </form>
 

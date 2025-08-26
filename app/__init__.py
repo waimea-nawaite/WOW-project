@@ -32,13 +32,13 @@ init_datetime(app)  # Handle UTC dates in timestamps
 def show_all_garments():
     with connect_db() as client:
         # Get all the things from the DB
-        sql = "SELECT priority, name, id FROM garments ORDER BY priority DESC"
+        sql = "SELECT priority, name, date, id FROM garments ORDER BY priority DESC"
         params = []
         result = client.execute(sql, params)
         garments = result.rows
 
         # And show them on the page
-        return render_template("pages/garments.jinja", garments=garments)
+        return render_template("pages/garment-list.jinja", garments=garments)
 
 
 #-----------------------------------------------------------
@@ -63,7 +63,7 @@ def show_one_garment(id):
         if result.rows:
             # yes, so show it on the page
             garment = result.rows[0]
-            return render_template("pages/garment.jinja", garment=garment)
+            return render_template("pages/garment-single.jinja", garment=garment)
 
         else:
             # No, so show error
