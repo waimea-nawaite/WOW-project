@@ -107,5 +107,27 @@ def delete_a_garment(id):
         # Go back to the home page
         flash("Garment deleted", "success")
         return redirect("/")
+    
+# #-----------------------------------------------------------
+# # A complete task
+# #-----------------------------------------------------------
+@app.get("/complete/<int:id>")
+def complete_task(id):
+    with connect_db() as client:
+        sql = "UPDATE garments SET complete=1 WHERE id=?"
+        values = [id]
+        client.execute(sql, values)
+    return redirect("/")
+    
+# #-----------------------------------------------------------
+# # A incomplete task
+# #-----------------------------------------------------------
+@app.get("/incomplete/<int:id>")
+def incomplete_task(id):
+    with connect_db() as client:
+        sql = "UPDATE tasks SET complete=0 WHERE id=?"
+        values = [id]
+        client.execute(sql, values)
+    return redirect("/")
 
 

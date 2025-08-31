@@ -27,7 +27,7 @@
 
                     <article>
                         {{ garment.priority }} <a href="/garment/{{ garment.id }}">{{ garment.name }}</a>
-                        <a href="/delete/{{ garment.id }}">Remove</a>
+                        <a href="/delete/{{ garment.id }}" onclick="return confirm('Really remove?');">Remove</a>
                         {{ garment.date }}
                     </article>
 
