@@ -17,7 +17,7 @@
 
 {% block content %}
 
-    <section id="garment-list">
+    <section id="garment_list">
 
         <h1>Garments...</h1>
 
@@ -26,7 +26,7 @@
                 {% for garment in garments %}
 
                     <article>
-                        {{ garment.priority }} <a href="/garment/{{ garment.id }}">{{ garment.name }}</a>
+                        {{ garment.priority }} {{ garment.name }}
                         <a href="/delete/{{ garment.id }}" onclick="return confirm('Really remove?');">Remove</a>
                         {{ garment.date }}
                     </article>

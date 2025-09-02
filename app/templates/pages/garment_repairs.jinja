@@ -11,12 +11,30 @@
 
 {% block title %}
 
-    Empty page for now
+  Garment repairs
 
 {% endblock %}
 
-
 {% block content %}
+
+  <h2>The list of garments with repairs</h2>
+
+   <ul>
+      {% for garment in garments %}
+
+          <article>
+              {{ garment.name }}
+             
+              {{ garment.date }}
+          </article>
+
+      {% else %}
+
+          <p>None!</p>
+
+      {% endfor %}
+  </ul>
+  
 
 
 {% endblock %}

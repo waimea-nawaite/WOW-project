@@ -38,36 +38,24 @@ def show_all_garments():
         garments = result.rows
 
         # And show them on the page
-        return render_template("pages/garment-list.jinja", garments=garments)
+        return render_template("pages/garment_list.jinja", garments=garments)
 
 
 #-----------------------------------------------------------
-# About page route
+# Garment page route - Show details of a single garment
 #-----------------------------------------------------------
-@app.get("/about/")
-def about():
-    return render_template("pages/about.jinja")
-
-#-----------------------------------------------------------
-# Thing page route - Show details of a single thing
-#-----------------------------------------------------------
-@app.get("/garment/<int:id>")
-def show_one_garment(id):
+@app.get("/garment_repairs/")
+def show_all_garment_repairs():
     with connect_db() as client:
-        # Get the thing details from the DB
-        sql = "SELECT priority, name, id FROM garments WHERE id=?"
-        params = [id]
+        # Get all the things from the DB
+        sql = "SELECT priority, name, date, id FROM garments ORDER BY priority DESC"
+        params = []
         result = client.execute(sql, params)
+        garments = result.rows
 
-        # Did we get a result?
-        if result.rows:
-            # yes, so show it on the page
-            garment = result.rows[0]
-            return render_template("pages/garment-single.jinja", garment=garment)
-
-        else:
-            # No, so show error
-            return not_found_error()
+        # And show them on the page
+        return render_template("pages/garment_list.jinja", garments=garments)
+        
 
 
 #-----------------------------------------------------------
@@ -91,6 +79,24 @@ def add_a_garment():
         # Go back to the home page
         flash(f"Garment '{name}' added", "success")
         return redirect("/")
+    
+@app.post("/add_repair")
+def add_a_repair():
+    # Get the data from the form
+    name  = request.form.get("name")
+
+    # Sanitise the text inputs
+    name = html.escape(name)
+
+    with connect_db() as client:
+        # Add the thing to the DB
+        sql = "INSERT INTO repairs (name) VALUES (?)"
+        params = [name]
+        client.execute(sql, params)
+
+        # Go back to the home page
+        flash(f"Repair '{name}' added", "success")
+        return redirect("garment_single")
 
 
 #-----------------------------------------------------------
@@ -108,26 +114,32 @@ def delete_a_garment(id):
         flash("Garment deleted", "success")
         return redirect("/")
     
-# #-----------------------------------------------------------
-# # A complete task
-# #-----------------------------------------------------------
-@app.get("/complete/<int:id>")
-def complete_task(id):
-    with connect_db() as client:
-        sql = "UPDATE garments SET complete=1 WHERE id=?"
-        values = [id]
-        client.execute(sql, values)
-    return redirect("/")
+# # #-----------------------------------------------------------
+# # # A complete task
+# # #-----------------------------------------------------------
+# @app.get("/complete/<int:id>")
+# def complete_task(id):
+#     with connect_db() as client:
+#         sql = "UPDATE garments SET complete=1 WHERE id=?"
+#         values = [id]
+#         client.execute(sql, values)
+#     return redirect("/")
     
-# #-----------------------------------------------------------
-# # A incomplete task
-# #-----------------------------------------------------------
-@app.get("/incomplete/<int:id>")
-def incomplete_task(id):
-    with connect_db() as client:
-        sql = "UPDATE tasks SET complete=0 WHERE id=?"
-        values = [id]
-        client.execute(sql, values)
-    return redirect("/")
+# # #-----------------------------------------------------------
+# # # A incomplete task
+# # #-----------------------------------------------------------
+# @app.get("/incomplete/<int:id>")
+# def incomplete_task(id):
+#     with connect_db() as client:
+#         sql = "UPDATE tasks SET complete=0 WHERE id=?"
+#         values = [id]
+#         client.execute(sql, values)
+#     return redirect("/")
 
 
+#-----------------------------------------------------------
+# About page route
+#-----------------------------------------------------------
+@app.get("/about/")
+def about():
+    return render_template("pages/about.jinja")
