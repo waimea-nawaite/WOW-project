@@ -42,7 +42,7 @@ def show_all_garments():
 
 
 #-----------------------------------------------------------
-# Garment page route - Show details of a single garment
+# 
 #-----------------------------------------------------------
 @app.get("/garment_repairs/")
 def show_all_garment_repairs():
@@ -54,12 +54,24 @@ def show_all_garment_repairs():
         garments = result.rows
 
         # And show them on the page
-        return render_template("pages/garment_list.jinja", garments=garments)
+        return render_template("pages/garment_repairs.jinja", garments=garments)
+    
+@app.get("/garment_single/")
+def show_all_single():
+    with connect_db() as client:
+        # Get all the things from the DB
+        sql = "SELECT amount, name, id FROM repairs"
+        params = []
+        result = client.execute(sql, params)
+        repair = result.rows
+
+        # And show them on the page
+        return render_template("pages/garment_single.jinja", repair=repair)
         
 
 
 #-----------------------------------------------------------
-# Route for adding a thing, using data posted from a form
+# Route for adding a garment, using data posted from a form
 #-----------------------------------------------------------
 @app.post("/add")
 def add_a_garment():
@@ -140,6 +152,3 @@ def delete_a_garment(id):
 #-----------------------------------------------------------
 # About page route
 #-----------------------------------------------------------
-@app.get("/about/")
-def about():
-    return render_template("pages/about.jinja")
