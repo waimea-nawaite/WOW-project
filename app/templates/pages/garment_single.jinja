@@ -16,23 +16,29 @@
 
 {% block content %}
 
-    <h1>Garment:</h1>
+    <h1>Repairs for:</h1>
 
+        <article>
 
-    <article>
+            <h2>Repairs for this garment:</h2>
+            <ul>
+            {% for r in repair %}
+                <li>{{ r.name }} - Amount: {{ r.amount }}</li>
+            {% else %}
+                <li>No repairs found for this garment.</li>
+            {% endfor %}
+            </ul>
 
-        <header>
-            <h3>{{ repairs.name }}</h3>
-        </header>
+        </article>
 
-        <p>Repairs: {{ repairs.amount }}</p>
-            
-        <footer>
-            <a href="/delete/{{ garment.id }}" onclick="return confirm('Really remove?');">Remove</a>
-        </footer>
+    <form action="/add_repair" method="POST">
 
-    </article>
-
+            <input
+                type="text"
+                name="name"
+                placeholder="Name of problem"
+                required
+            >
 
     <a role="button" href="/">Back to garment List</a>
 

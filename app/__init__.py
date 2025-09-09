@@ -56,20 +56,49 @@ def show_all_garment_repairs():
         # And show them on the page
         return render_template("pages/garment_repairs.jinja", garments=garments)
     
-@app.get("/garment_single/")
-def show_all_single():
+# @app.get("/garment_single/")
+# def show_all_single():
+#     with connect_db() as client:
+#         # Get all the things from the DB
+#         sql_repairs = "SELECT amount, name, id FROM repairs"
+#         params_repairs = []
+#         result_repairs = client.execute(sql_repairs, params_repairs)
+#         repairs = result_repairs.rows
+
+#         return render_template("pages/garment_single.jinja", repairs=repairs)
+    
+@app.get('/garment_single/<int:garment_id>')
+def show_single_garment(garment_id):
     with connect_db() as client:
-        # Get all the things from the DB
-        sql = "SELECT amount, name, id FROM repairs"
-        params = []
-        result = client.execute(sql, params)
-        repair = result.rows
-
-        # And show them on the page
-        return render_template("pages/garment_single.jinja", repair=repair)
+        # Get the garment info if you want to show it too
+        sql_garment = "SELECT name, id FROM garments WHERE id = %s"
+        garment_result = client.execute(sql_garment, [garment_id])
+        garment = garment_result.rows[0] if garment_result.rows else None
         
+        # Get repairs only for this garment
+        sql_repairs = "SELECT amount, name, id FROM repairs WHERE garment_id = %s"
+        repair_result = client.execute(sql_repairs, [garment_id])
+        repairs = repair_result.rows
+
+    return render_template(
+        "pages/garment_single.jinja",
+        garment=garment,
+        repair=repairs
+    )
 
 
+
+# def show_all_single(id):
+#     with connect_db() as client:
+#         sql_garments = "SELECT id, name FROM garments WHERE id=?"
+#         values_garments = [id]
+#         result_garments = client.execute(sql_garments, values_garments)
+#         garments = result_garments.rows
+
+#         # And show them on the page
+#         garments = result_garments.rows[0]
+#         return render_template("pages/garment_single.jinja", garments=garments)
+        
 #-----------------------------------------------------------
 # Route for adding a garment, using data posted from a form
 #-----------------------------------------------------------
@@ -108,7 +137,7 @@ def add_a_repair():
 
         # Go back to the home page
         flash(f"Repair '{name}' added", "success")
-        return redirect("garment_single")
+        return redirect("pages/garment_single.jinja")
 
 
 #-----------------------------------------------------------
