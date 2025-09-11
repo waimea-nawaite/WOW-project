@@ -56,35 +56,35 @@ def show_all_garment_repairs():
         # And show them on the page
         return render_template("pages/garment_repairs.jinja", garments=garments)
     
-# @app.get("/garment_single/")
-# def show_all_single():
-#     with connect_db() as client:
-#         # Get all the things from the DB
-#         sql_repairs = "SELECT amount, name, id FROM repairs"
-#         params_repairs = []
-#         result_repairs = client.execute(sql_repairs, params_repairs)
-#         repairs = result_repairs.rows
-
-#         return render_template("pages/garment_single.jinja", repairs=repairs)
-    
-@app.get('/garment_single/<int:garment_id>')
-def show_single_garment(garment_id):
+@app.get("/garment_single/")
+def show_all_single():
     with connect_db() as client:
-        # Get the garment info if you want to show it too
-        sql_garment = "SELECT name, id FROM garments WHERE id = %s"
-        garment_result = client.execute(sql_garment, [garment_id])
-        garment = garment_result.rows[0] if garment_result.rows else None
-        
-        # Get repairs only for this garment
-        sql_repairs = "SELECT amount, name, id FROM repairs WHERE garment_id = %s"
-        repair_result = client.execute(sql_repairs, [garment_id])
-        repairs = repair_result.rows
+        # Get all the things from the DB
+        sql_repairs = "SELECT amount, name, id FROM repairs"
+        params_repairs = []
+        result_repairs = client.execute(sql_repairs, params_repairs)
+        repairs = result_repairs.rows
 
-    return render_template(
-        "pages/garment_single.jinja",
-        garment=garment,
-        repair=repairs
-    )
+        return render_template("pages/garment_single.jinja", repairs=repairs)
+    
+# @app.get('/garment_single/<int:garment_id>')
+# def show_single_garment(garment_id):
+#     with connect_db() as client:
+#         # Get the garment info if you want to show it too
+#         sql_garment = "SELECT name, id FROM garments WHERE id = %s"
+#         garment_result = client.execute(sql_garment, [garment_id])
+#         garment = garment_result.rows[0] if garment_result.rows else None
+        
+#         # Get repairs only for this garment
+#         sql_repairs = "SELECT amount, name, id FROM repairs WHERE garment_id = %s"
+#         repair_result = client.execute(sql_repairs, [garment_id])
+#         repairs = repair_result.rows
+
+#     return render_template(
+#         "pages/garment_single.jinja",
+#         garment=garment,
+#         repair=repairs
+#     )
 
 
 
@@ -124,7 +124,7 @@ def add_a_garment():
 @app.post("/add_repair")
 def add_a_repair():
     # Get the data from the form
-    name  = request.form.get("name")
+    name = request.form.get("name")
 
     # Sanitise the text inputs
     name = html.escape(name)
@@ -135,9 +135,21 @@ def add_a_repair():
         params = [name]
         client.execute(sql, params)
 
-        # Go back to the home page
+        # Go back to the page
         flash(f"Repair '{name}' added", "success")
-        return redirect("pages/garment_single.jinja")
+        return redirect("/garment_single")
+    
+@app.get("/delete_repair/<int:id>")
+def delete_a_repair(id):
+    with connect_db() as client:
+        # Delete the thing from the DB
+        sql = "DELETE FROM repairs WHERE id=?"
+        params = [id]
+        client.execute(sql, params)
+
+        # Go back to the home page
+        flash("Repair deleted", "success")
+        return redirect("/garment_single")
 
 
 #-----------------------------------------------------------

@@ -16,14 +16,14 @@
 
 {% block content %}
 
-    <h1>Repairs for:</h1>
+    <h1>Repairs:</h1>
 
         <article>
 
             <h2>Repairs for this garment:</h2>
             <ul>
-            {% for r in repair %}
-                <li>{{ r.name }} - Amount: {{ r.amount }}</li>
+            {% for r in repairs %}
+                <li> - Amount: {{ r.amount }} <a href="/delete_repair/{{ r.id }}" onclick="return confirm('Really remove?');">Remove</a></li>
             {% else %}
                 <li>No repairs found for this garment.</li>
             {% endfor %}
@@ -40,7 +40,9 @@
                 required
             >
 
-    <a role="button" href="/">Back to garment List</a>
+            <button>Add Repair</button>
+
+    <a role="button" href="/garment_repairs">Back to repair List</a>
 
 {% endblock %}
 
