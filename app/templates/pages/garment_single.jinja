@@ -1,18 +1,16 @@
 {#=====================================================
-  Thing page
-  - Shows details of a single thing
+  Garment Single Repair page
+  - Shows repairs of a single garment
   - Has a delete link to remove it
 =====================================================#}
 
 {% extends 'pages/base.jinja' %}
-
 
 {% block title %}
 
    Single garment
 
 {% endblock %}
-
 
 {% block content %}
 
@@ -22,11 +20,17 @@
 
             <h2>Repairs for this garment:</h2>
             <ul>
-            {% for r in repairs %}
-                <li> - Amount: {{ r.amount }} <a href="/delete_repair/{{ r.id }}" onclick="return confirm('Really remove?');">Remove</a></li>
-            {% else %}
-                <li>No repairs found for this garment.</li>
-            {% endfor %}
+                {% for r in repairs %}
+                    <li>{{ r.name }} 
+                {% if r.complete %}
+                    <p>Fixed: <a href="/incomplete_repair/{{ r.id }}">🗹</a></p>
+                {% else %} 
+                    <p>Fixed: <a href="/complete_repair/{{ r.id }}">☐</a></p>
+                {% endif %}
+
+                {% else %}
+                    <li>No repairs found for this garment.</li>
+                {% endfor %}
             </ul>
 
         </article>
@@ -45,4 +49,3 @@
     <a role="button" href="/garment_repairs">Back to repair List</a>
 
 {% endblock %}
-

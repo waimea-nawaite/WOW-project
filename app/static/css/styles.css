@@ -34,7 +34,7 @@
 /* GARMENT LIST -------------------------------------------- */
 
 #garment_list {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 #messages .message.success { color: var(--pico-color-green-500); }

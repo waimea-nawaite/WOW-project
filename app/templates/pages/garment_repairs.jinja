@@ -1,13 +1,10 @@
 {#=====================================================
-  About page (DEMO)
-  - Information about Flask
-  - Information about Jinja
-  - Information about Turso
-  - Information about PicoCSS
+  Garment Repair List page:
+  The list of garments and a link to what repair a 
+  garment has
 =====================================================#}
 
 {% extends 'pages/base.jinja' %}
-
 
 {% block title %}
 
@@ -24,7 +21,6 @@
 
           <article>
               <a href="/garment_single">{{ garment.name }}</a>
-             
               {{ garment.date }}
           </article>
 
@@ -34,8 +30,5 @@
 
       {% endfor %}
     </ul>
-  
-
 
 {% endblock %}
-

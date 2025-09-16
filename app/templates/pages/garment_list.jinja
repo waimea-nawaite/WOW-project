@@ -1,12 +1,11 @@
 {#=====================================================
   Home page
   - Hero style greeting banner
-  - List of things passed in as 'things' array
-  - Form for adding a new thing
+  - List of garments passed in as 'garments' array
+  - Form for adding a new garment
 =====================================================#}
 
 {% extends 'pages/base.jinja' %}
-
 
 {% block title %}
 
@@ -14,21 +13,25 @@
 
 {% endblock %}
 
-
 {% block content %}
 
     <section id="garment_list">
 
         <h1>Garments...</h1>
 
-
             <ul>
                 {% for garment in garments %}
 
                     <article>
-                        {{ garment.priority }} {{ garment.name }}
+                        {{ garment.name }} 
+                        <p>Priority: {{ garment.priority }}</p>
+                        <p>Date listed: {{ garment.date }}</p>
+                        {% if garment.complete %}
+                            <p>Complete: <a href="/incomplete/{{ garment.id }}">🗹</a></p>
+                        {% else %} 
+                            <p>Complete: <a href="/complete/{{ garment.id }}">☐</a></p>
+                        {% endif %}       
                         <a href="/delete/{{ garment.id }}" onclick="return confirm('Really remove?');">Remove</a>
-                        {{ garment.date }}
                     </article>
 
                 {% else %}
@@ -69,5 +72,3 @@
     </article>
 
 {% endblock %}
-
-
