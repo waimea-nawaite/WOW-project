@@ -34,7 +34,16 @@ init_datetime(app)  # Handle UTC dates in timestamps
 def show_all_garments():
     with connect_db() as client:
         # Get all the things from the DB
-        sql = "SELECT priority, name, date, id, complete FROM garments ORDER BY priority DESC"
+        sql = """
+            SELECT 
+                priority, 
+                name, 
+                date, 
+                id,
+                (SELECT COUNT(id) FROM repairs WHERE garment_id=garments.id and complete=0) AS repair_count
+            FROM garments 
+            ORDER BY priority DESC
+        """
         params = []
         result = client.execute(sql, params)
         garments = result.rows
@@ -42,43 +51,32 @@ def show_all_garments():
         # And show them on the page
         return render_template("pages/garment_list.jinja", garments=garments)
 
-
-#-----------------------------------------------------------
-# Repair page route shows the garments and how many repairs
-# it has
-#-----------------------------------------------------------
-@app.get("/garment_repairs/")
-def show_all_garment_repairs():
-    with connect_db() as client:
-        # Get all the garments from the DB
-        sql = "SELECT priority, name, date, id FROM garments ORDER BY priority DESC"
-        params = []
-        result = client.execute(sql, params)
-        garments = result.rows
-
-        # And show them on the page
-        return render_template("pages/garment_repairs.jinja", garments=garments)
-
 #-----------------------------------------------------------
 # Single page route shows the garment name, what repairs it
 # has and the list of repairs for that garment
 #-----------------------------------------------------------
-@app.get("/garment_single/")
-def show_all_single():
+@app.get("/garment/<int:id>")
+def show_all_single(id):
     with connect_db() as client:
-        # Get all the garments from the DB
-        sql = "SELECT complete, name, id FROM repairs"
-        params = []
+        # Get all the garment details from the DB
+        sql = "SELECT name, date, priority, id FROM garments WHERE id=?"
+        params = [id]
+        result = client.execute(sql, params)
+        garment = result.rows[0]
+
+        # Get all the repairs from the DB
+        sql = "SELECT complete, name, id FROM repairs WHERE garment_id=?"
+        params = [id]
         result = client.execute(sql, params)
         repairs = result.rows
 
-        return render_template("pages/garment_single.jinja", repairs=repairs)
+        return render_template("pages/garment.jinja", garment=garment, repairs=repairs)
     
 # @app.get('/garment_single/<int:garment_id>')
 # def show_single_garment(garment_id):
 #     with connect_db() as client:
 #         # Get the garment info if you want to show it too
-#         sql_garment = "SELECT name, id FROM garments WHERE id = %s"
+#         sql_garment = "SELECT name, id FROM garments WHERE id = ?"
 #         garment_result = client.execute(sql_garment, [garment_id])
 #         garment = garment_result.rows[0] if garment_result.rows else None
         
@@ -143,27 +141,27 @@ def delete_a_garment(id):
         flash("Garment deleted", "success")
         return redirect("/")
     
-# #-----------------------------------------------------------
-# # A complete garment
-# #-----------------------------------------------------------
-@app.get("/complete/<int:id>")
-def complete_garment(id):
-    with connect_db() as client:
-        sql = "UPDATE garments SET complete=1 WHERE id=?"
-        values = [id]
-        client.execute(sql, values)
-    return redirect("/")
+# # #-----------------------------------------------------------
+# # # A complete garment
+# # #-----------------------------------------------------------
+# @app.get("/complete/<int:id>")
+# def complete_garment(id):
+#     with connect_db() as client:
+#         sql = "UPDATE garments SET complete=1 WHERE id=?"
+#         values = [id]
+#         client.execute(sql, values)
+#     return redirect("/")
     
-# #-----------------------------------------------------------
-# # A incomplete garment
-# #-----------------------------------------------------------
-@app.get("/incomplete/<int:id>")
-def incomplete_garment(id):
-    with connect_db() as client:
-        sql = "UPDATE garments SET complete=0 WHERE id=?"
-        values = [id]
-        client.execute(sql, values)
-    return redirect("/")
+# # #-----------------------------------------------------------
+# # # A incomplete garment
+# # #-----------------------------------------------------------
+# @app.get("/incomplete/<int:id>")
+# def incomplete_garment(id):
+#     with connect_db() as client:
+#         sql = "UPDATE garments SET complete=0 WHERE id=?"
+#         values = [id]
+#         client.execute(sql, values)
+#     return redirect("/")
 
 # #-----------------------------------------------------------
 # # A complete repair
@@ -174,7 +172,7 @@ def complete_repair(id):
         sql = "UPDATE repairs SET complete=1 WHERE id=?"
         values = [id]
         client.execute(sql, values)
-    return redirect("/garment_single")
+    return redirect("/")
     
 # #-----------------------------------------------------------
 # # A incomplete repair
@@ -185,4 +183,4 @@ def incomplete_repair(id):
         sql = "UPDATE repairs SET complete=0 WHERE id=?"
         values = [id]
         client.execute(sql, values)
-    return redirect("/garment_single")
+    return redirect("/")

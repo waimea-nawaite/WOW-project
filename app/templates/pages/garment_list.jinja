@@ -23,15 +23,18 @@
                 {% for garment in garments %}
 
                     <article>
-                        {{ garment.name }} 
+                        <h3>{{ garment.name }} </h3>
+
                         <p>Priority: {{ garment.priority }}</p>
                         <p>Date listed: {{ garment.date }}</p>
-                        {% if garment.complete %}
-                            <p>Complete: <a href="/incomplete/{{ garment.id }}">🗹</a></p>
-                        {% else %} 
-                            <p>Complete: <a href="/complete/{{ garment.id }}">☐</a></p>
-                        {% endif %}       
-                        <a href="/delete/{{ garment.id }}" onclick="return confirm('Really remove?');">Remove</a>
+                        <p>Repairs Needed: 
+                            {% if garment.repair_count == 0 %}
+                                None
+                            {% else %} 
+                                <span class="urgent">{{ garment.repair_count }}</span>
+                            {% endif %}   
+                        </p>    
+                        <a href="/garment/{{ garment.id }}" >See Details</a>
                     </article>
 
                 {% else %}
