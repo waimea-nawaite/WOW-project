@@ -72,6 +72,50 @@ def show_all_single(id):
 
         return render_template("pages/garment.jinja", garment=garment, repairs=repairs)
     
+# #-----------------------------------------------------------
+# # A complete repair
+# #-----------------------------------------------------------
+@app.get("/incomplete_repair/<int:repair_id>")
+def complete_repair(repair_id):
+    with connect_db() as client:
+        # Mark the repair complete
+        sql = "UPDATE repairs SET complete=1 WHERE id=?"
+        client.execute(sql, [repair_id])
+
+        # Get the garment_id related to this repair
+        sql = "SELECT garment_id FROM repairs WHERE id=?"
+        result = client.execute(sql, [repair_id])
+
+        if not result.rows:
+            return "Repair not found", 404
+
+        garment_id = result.rows[0][0]  # first column of first row
+
+        # Redirect to the garment page dynamically
+        return redirect(f"/garment/{garment_id}")
+
+    
+# #-----------------------------------------------------------
+# # A incomplete repair
+# #-----------------------------------------------------------
+@app.get("/complete_repair/<int:repair_id>")
+def incomplete_repair(repair_id):
+    with connect_db() as client:
+        sql = "UPDATE repairs SET complete=0 WHERE id=?"
+        client.execute(sql, [repair_id])
+
+        sql = "SELECT garment_id FROM repairs WHERE id=?"
+        result = client.execute(sql, [repair_id])
+
+        if not result.rows:
+            return "Repair not found", 404
+
+        garment_id = result.rows[0][0]
+
+        return redirect(f"/garment/{garment_id}")
+
+
+    
 # @app.get('/garment_single/<int:garment_id>')
 # def show_single_garment(garment_id):
 #     with connect_db() as client:
@@ -162,25 +206,3 @@ def delete_a_garment(id):
 #         values = [id]
 #         client.execute(sql, values)
 #     return redirect("/")
-
-# #-----------------------------------------------------------
-# # A complete repair
-# #-----------------------------------------------------------
-@app.get("/complete_repair/<int:id>")
-def complete_repair(id):
-    with connect_db() as client:
-        sql = "UPDATE repairs SET complete=1 WHERE id=?"
-        values = [id]
-        client.execute(sql, values)
-    return redirect("/")
-    
-# #-----------------------------------------------------------
-# # A incomplete repair
-# #-----------------------------------------------------------
-@app.get("/incomplete_repair/<int:id>")
-def incomplete_repair(id):
-    with connect_db() as client:
-        sql = "UPDATE repairs SET complete=0 WHERE id=?"
-        values = [id]
-        client.execute(sql, values)
-    return redirect("/")

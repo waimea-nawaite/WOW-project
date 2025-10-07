@@ -37,6 +37,21 @@
     font-size: 1.1rem;
 }
 
+.urgent {
+    color: red;
+}
+
+.done {
+    color: green;
+}
+
+.fixed {
+    color: green;
+}
+
+.unfixed {
+    color: red;
+}
 #messages .message.success { color: var(--pico-color-green-500); }
 #messages .message.error   { color: var(--pico-color-red-500); }
 

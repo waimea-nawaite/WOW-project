@@ -14,7 +14,7 @@
 
 {% block content %}
 
-    <h1>Repair for {{ garment.name }}:</h1>
+    <h1>Repair2 for {{ garment.name }}:</h1>
 
         <article>
 
@@ -23,9 +23,9 @@
                 {% for r in repairs %}
                     <li>{{ r.name }} 
                 {% if r.complete %}
-                    <p>Fixed: <a href="/incomplete_repair/{{ r.id }}">🗹</a></p>
+                    <p><span class="fixed">Fixed: <a href="/complete_repair/{{ r.id }}">🗹</a></span></p>
                 {% else %} 
-                    <p>Fixed: <a href="/complete_repair/{{ r.id }}">☐</a></p>
+                    <p><span class="unfixed">Fixed: <a href="/incomplete_repair/{{ r.id }}">☐</a></span></p>
                 {% endif %}
 
                 {% else %}
@@ -46,6 +46,6 @@
 
             <button>Add Repair</button>
 
-    <a role="button" href="/garment_repairs">Back to repair List</a>
+    <a role="button" href="/">Back to Garment List</a>
 
 {% endblock %}

@@ -27,14 +27,14 @@
 
                         <p>Priority: {{ garment.priority }}</p>
                         <p>Date listed: {{ garment.date }}</p>
-                        <p>Repairs Needed: 
+                        <p>
                             {% if garment.repair_count == 0 %}
-                                None
+                                <span class="done">Repairs Needed: None </span>
                             {% else %} 
-                                <span class="urgent">{{ garment.repair_count }}</span>
+                                <span class="urgent">Repairs Needed: {{ garment.repair_count }}</span>
                             {% endif %}   
                         </p>    
-                        <a href="/garment/{{ garment.id }}" >See Details</a>
+                        <a href="/garment/{{ garment.id }}">See Details</a>
                     </article>
 
                 {% else %}
