@@ -8,8 +8,8 @@
 {% extends 'pages/base.jinja' %}
 
 {% block title %}
-
-    Garment List
+    
+    Garment List 
 
 {% endblock %}
 
@@ -22,7 +22,7 @@
             <ul>
                 {% for garment in garments %}
 
-                    <article>
+                    <article class="section_color">
                         <h3>{{ garment.name }} </h3>
 
                         <p>Priority: {{ garment.priority }}</p>
@@ -68,7 +68,7 @@
                 required
             >
 
-            <button>Add Garment</button>
+            <button class="add_garment">Add Garment</button>
 
         </form>
 

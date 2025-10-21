@@ -37,6 +37,14 @@
     font-size: 1.1rem;
 }
 
+.garment_page {
+    color: lightseagreen;
+}
+
+.add_garment {
+    background-color: darkcyan;
+}
+
 .urgent {
     color: red;
 }
@@ -45,13 +53,23 @@
     color: green;
 }
 
-.fixed {
-    color: green;
-}
-
 .unfixed {
     color: red;
 }
+
+.fixed {
+    color: green;
+}
+/* 
+.layout_color {
+    background-color: darkblue;
+} */
+
+.section_color {
+    background-color: #2C2B2C;
+}
+
+
 #messages .message.success { color: var(--pico-color-green-500); }
 #messages .message.error   { color: var(--pico-color-red-500); }
 

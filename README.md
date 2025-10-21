@@ -12,16 +12,16 @@ be used and what are needed also to check if the costume needs anything before b
 
 - It will let the workers say if it needs repairs and what does need fixing
 - A check box for the Garments needs 
-- Adding/removing Garments
-- 
-- Feature 5 here
+- Adding Garments
+- say the amount of repairs needed
 
 
 ---
 
 ## Project Links
 
-- [GitHub repo for the project](https://...)
+- [GitHub repo for the project](https://github.com/waimea-nawaite/WOW-project)
+- [Project Documentation](https://waimea-nawaite.github.io/WOW-project/)
 - [Live web app](https://...)
 
 
